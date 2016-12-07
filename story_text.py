@@ -46,6 +46,3 @@ journey_to_door = "You turn to look back towards the city gates, and when you tu
                   "Sure enough, completely ignored or unnoticed by the throngs of sellers, buyers, traders, and hawkers " \
                   "streaming in and out of the gates, is a small wooden door. It is set into the wall a mere 10 feet from the left gate." \
                   "On it is an inscription:"
-
-
-print(slowth(intro))
