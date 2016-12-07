@@ -6,7 +6,7 @@
 # notify if wrong
 # notify if right
 import random
-
+from story_text import slowth
 
 def scramble_it(word):
     letter_list = list(word)
@@ -31,7 +31,7 @@ def guess(word):
         print("The way is shut.")
         guess(word)
     else:
-        print("\nWith a small click, the door unlocks itself.")
+        print(slowth("\nWith a small click, the door unlocks itself."))
 
 
 def word_scramble():
