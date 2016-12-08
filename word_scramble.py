@@ -1,12 +1,5 @@
-# list of words
-# choose one
-# scramble it
-# display it
-# accept guesses
-# notify if wrong
-# notify if right
 import random
-from story_text import slowth
+from slowth import slowth
 
 def scramble_it(word):
     letter_list = list(word)
@@ -36,14 +29,9 @@ def guess(word):
 
 def word_scramble():
     word_list = ["yoghurt", "yogurt", "donut", "doughnut"]
-
     word = random.choice(word_list)
-
     # print(word)
-
     scramble = scramble_it(word)
-
     print("~*~")
     print(scramble)
-
     guess(word)

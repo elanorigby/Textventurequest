@@ -1,5 +1,6 @@
 import sys
-from story_text import *
+import story_text
+from slowth import slowth
 from word_scramble import word_scramble
 
 
@@ -45,6 +46,7 @@ if __name__ == "__main__":
 
     print(slowth(story_text.journey_to_door))
     word_scramble()
+    print(slowth(story_text.through_the_door))
     print(slowth(temp_ending))
 
 
