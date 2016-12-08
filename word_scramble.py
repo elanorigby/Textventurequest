@@ -2,6 +2,11 @@ import random
 from slowth import slowth
 
 def scramble_it(word):
+    '''
+    Takes a word and returns a scrambled version of it as a list.
+    :param word:
+    :return:
+    '''
     letter_list = list(word)
     # print(letter_list)
     len_list = list(range(0, len(letter_list)))
@@ -19,6 +24,12 @@ def scramble_it(word):
 
 
 def guess(word):
+    '''
+    Takes guesses as to what a scrambled word is and checks against the answer.
+    Must get it right to pass.
+    :param word:
+    :return:
+    '''
     answer = input("~Solve the riddle of the ancients and speak the password.~\n")
     if answer.lower().strip() != word.lower():
         print("The way is shut.")
