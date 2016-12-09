@@ -1,23 +1,32 @@
-# choose random start points for
-#    player
-#    exit
-
 import random
 
 
-def draw_maze(rooms):
+def draw_maze(rooms, player):
     print('_____________________')
     for room in rooms:
-        if room[1] == 0:
-            print('|___|', end='')
-        elif room[1] == 4:
-            print('___|')
+        if room == player:
+            if room[1] == 0:
+                print('|_*_|', end='')
+            elif room[1] == 4:
+                print('_*_|')
+            else:
+                print('_*_|', end='')
         else:
-            print('___|', end='')
+            if room[1] == 0:
+                print('|___|', end='')
+            elif room[1] == 4:
+                print('___|')
+            else:
+                print('___|', end='')
 
 
 def get_location(rooms):
     return random.choice(rooms)
+
+def player_and_exit(rooms):
+    exit = get_location(rooms)
+    player = get_location(rooms)
+    return exit, player
 
 
 def move_player(rooms, player):
@@ -65,7 +74,6 @@ def move_player(rooms, player):
 
 
 
-
 def run_maze():
     ROOMS = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4),
              (1, 0), (1, 1), (1, 2), (1, 3), (1, 4),
@@ -73,22 +81,18 @@ def run_maze():
              (3, 0), (3, 1), (3, 2), (3, 3), (3, 4),
              (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
 
-    draw_maze(ROOMS)
-    exit = get_location(ROOMS)
-    player = get_location(ROOMS)
+
+    exit, player = player_and_exit(ROOMS)
+    draw_maze(ROOMS, player)
     print('exit = ' + str(exit))
     print('player = ' + str(player))
     player = move_player(ROOMS, player)
 
     while player != exit:
+        draw_maze(ROOMS, player)
         player = move_player(ROOMS, player)
         print(player)
 
     print('\n')
     print("You found the exit!!!")
-
-
-
-
-
-run_maze()
+    print('\n')
