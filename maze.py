@@ -5,7 +5,7 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def draw_maze(rooms, player):
+def draw_maze(rooms, exit, player):
     print('_'*21)
     cell = '|{}'
 
@@ -14,13 +14,17 @@ def draw_maze(rooms, player):
 
         if x < 4:
             line_end = ''
-            if room == player:
+            if  room == player == exit:
+                output = cell.format('[*]')
+            elif room == player:
                 output = cell.format('_*_')
             else:
                 output = cell.format('___')
         else:
             line_end = "\n"
-            if room == player:
+            if room == player == exit:
+                output = cell.format('[*]|')
+            elif room == player:
                 output = cell.format('_*_|')
             else:
                 output = cell.format('___|')
@@ -31,31 +35,21 @@ def get_locations(rooms):
     return random.sample(rooms, 2)
 
 
-def get_move(player):
+def get_move():
     move = input('"L" to move left, "R" to move right, "U" to move up, "D" to move down\n>').lower()
+    return move
+
+def check_move(player):
     x, y = player
     legit_moves = ['l', 'r', 'u', 'd']
     if x == 0:
-        moves.remove('l')
+        legit_moves.remove('l')
     if x == 4:
-        moves.remove('r')
+        legit_moves.remove('r')
     if y == 0:
-        moves.remove('u')
+        legit_moves.remove('u')
     if y == 4:
-        moves.remove('d')
-    return move
-
-def check_move(move):
-    x, y = move
-    legit_moves = ['l', 'r', 'u', 'd']
-    if x == 0:
-        moves.remove('l')
-    if x == 4:
-        moves.remove('r')
-    if y == 0:
-        moves.remove('u')
-    if y == 4:
-        moves.remove('d')
+        legit_moves.remove('d')
     return legit_moves
 
 def move_player(rooms, player):
@@ -63,7 +57,7 @@ def move_player(rooms, player):
     x, y = player
 
     if move in 'lrud':
-        if move in check_move(move):
+        if move in check_move(player):
             if move == 'l':
                 x -= 1
             if move == 'r':
@@ -74,10 +68,10 @@ def move_player(rooms, player):
                 y += 1
             return x, y
         else:
-            print("\n There is a wall there... Are you feeling ok?")
+            print("There is a wall there... Are you feeling ok?")
             move_player(rooms, player)
     else:
-        print("\nThat's not a direction. The nightmares are affecting you, eh?")
+        print("That's not a direction. The nightmares are affecting you, eh?")
         move_player(rooms, player)
 
     return player
@@ -95,11 +89,12 @@ def run_maze(debug=True):
 
     while player != exit:
         clear_screen()
-        draw_maze(ROOMS, player)
+        draw_maze(ROOMS, exit, player)
         if debug:
             print('exit = ' + str(exit))
         player = move_player(ROOMS, player)
     else:
+        draw_maze(ROOMS, exit, player)
         print("\nYou found the exit!!!\n")
 
 
