@@ -16,4 +16,5 @@ through_the_door = "You hesitate and glance around quickly. No one is looking at
                    "feeling its heat, and plunge in. \n" \
 
 
-temp_ending = "And that's all she wrote............. for now"
+temp_ending = ("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+               "\nAnd that's all she wrote............. for now\n")

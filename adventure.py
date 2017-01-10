@@ -32,8 +32,7 @@ def offer_quest(name, homeland):
         sys.exit()
 
 
-
-if __name__ == "__main__":
+def adventure():
     print(slowth(story_text.arrival))
     name = get_name()
     homeland = greet(name)
@@ -43,3 +42,7 @@ if __name__ == "__main__":
     print(slowth(story_text.through_the_door))
     run_maze()
     print(slowth(story_text.temp_ending))
+
+
+if __name__ == "__main__":
+    adventure()

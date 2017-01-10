@@ -1,8 +1,13 @@
 import random
 import os
 
+
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def get_locations(rooms):
+    return random.sample(rooms, 2)
 
 
 def draw_maze(rooms, exit, player):
@@ -11,10 +16,9 @@ def draw_maze(rooms, exit, player):
 
     for room in rooms:
         x, y = room
-
         if x < 4:
             line_end = ''
-            if  room == player == exit:
+            if room == player == exit:
                 output = cell.format('[*]')
             elif room == player:
                 output = cell.format('_*_')
@@ -31,15 +35,18 @@ def draw_maze(rooms, exit, player):
         print(output, end=line_end)
 
 
-def get_locations(rooms):
-    return random.sample(rooms, 2)
-
-
 def get_move():
     move = input('"L" to move left, "R" to move right, "U" to move up, "D" to move down\n>').lower()
     return move
 
+
 def check_move(player):
+    """
+    Makes sure not they don't teleport through the outer walls.
+    :param player:
+    :return:
+    """
+
     x, y = player
     legit_moves = ['l', 'r', 'u', 'd']
     if x == 0:
@@ -51,6 +58,7 @@ def check_move(player):
     if y == 4:
         legit_moves.remove('d')
     return legit_moves
+
 
 def move_player(rooms, player):
     move = get_move()
@@ -77,7 +85,6 @@ def move_player(rooms, player):
     return player
 
 
-
 def run_maze(debug=True):
     ROOMS = [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0),
              (0, 1), (1, 1), (2, 1), (3, 1), (4, 1),
@@ -86,6 +93,7 @@ def run_maze(debug=True):
              (0, 4), (1, 4), (2, 4), (3, 4), (4, 4)]
 
     exit, player = get_locations(ROOMS)
+    print("~~~ MAZE OF NIGHTMARES ~~~")
 
     while player != exit:
         clear_screen()
@@ -95,8 +103,8 @@ def run_maze(debug=True):
         player = move_player(ROOMS, player)
     else:
         draw_maze(ROOMS, exit, player)
-        print("\nYou found the exit!!!\n")
+        print("\nYou throw open the exit door and step gasping into the sunlight.\n")
 
 
-
-run_maze()
+if __name__ == '__main__':
+    run_maze()

@@ -3,12 +3,16 @@ import re
 from random import uniform
 
 
-def slowth(string):
+def slowth(string, debug=False):
     '''
-    Takes a string ad outputs it to console in a manner that somewhat mimics typing / the rhythm of speech.
+    Takes a string and outputs it to console in a manner that somewhat mimics typing / the rhythm of speech.
     :param string:
     :return:
     '''
+
+    if debug:
+        return string + '\n'
+
 
     counter = 0
     for letter in string:
@@ -25,26 +29,3 @@ def slowth(string):
             counter += 1
 
     return '\n'
-
-
-
-
-
-
-
-
-# ye olde slowthe
-
-# def slowth(string):
-#     counter = 0
-#     for letter in string:
-#         if counter >= 90:
-#             print(letter)
-#             counter = 0
-#         else:
-#             print(letter, end='', flush=True)
-#             time.sleep(uniform(0, 0.1))
-#             counter += 1
-#
-#     return ' \n'
-
