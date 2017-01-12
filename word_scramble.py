@@ -1,32 +1,13 @@
 import random
 from slowth import slowth
 
-def scramble_it(word, debug):
+def scramble_it(word):
     """
     Takes a word and returns a scrambled version of it as a list.
     :param word:
     :return:
     """
-    letter_list = list(word)
-    len_list = list(range(0, len(letter_list)))
-    scramble_list = []
-    initial_len = len(len_list)
-
-    if debug:
-        print('letter_list - {}'.format(letter_list))
-        print('len_list - {}'.format(len_list))
-        print('scramoble_list - {}'.format(scramble_list))
-        print(initial_len)
-
-    for i in range(0, initial_len):
-        idx = random.choice(len_list)
-        len_list.remove(idx)
-        scramble_list.append(letter_list[int(idx)])
-
-    ###### can do with enumerate??
-
-
-    return scramble_list
+    return random.sample(list(word), len(word))
 
 
 def guess(word):
@@ -49,7 +30,7 @@ def word_scramble(debug=False):
     word_list = ["yoghurt", "yogurt", "donut", "doughnut"]
     word = random.choice(word_list)
     # print(word)
-    scramble = scramble_it(word, debug)
+    scramble = scramble_it(word)
     print("~*~")
     print(scramble)
     guess(word)
