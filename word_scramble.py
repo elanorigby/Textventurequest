@@ -7,7 +7,7 @@ def scramble_it(word):
     :param word:
     :return:
     """
-    return random.sample(list(word), len(word))
+    return random.sample(word, len(word))
 
 
 def guess(word):
