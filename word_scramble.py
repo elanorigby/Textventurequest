@@ -17,22 +17,20 @@ def guess(word):
     :param word:
     :return:
     """
-    answer = input("~Solve the riddle of the ancients and speak the password.~\n")
+    answer = input("> ")
 
     if answer.lower().strip() != word.lower():
-        print("The way is shut.")
+        print("The way is shut. \n")
         guess(word)
     else:
         print(slowth("\nWith a small click, the door unlocks itself."))
 
 
-def word_scramble(debug=False):
+def word_scramble():
     word_list = ["yoghurt", "yogurt", "donut", "doughnut"]
     word = random.choice(word_list)
-    # print(word)
-    scramble = scramble_it(word)
-    print("~*~")
-    print(scramble)
+    print("~Solve the riddle of the ancients and speak the password.~\n")
+    print(scramble_it(word))
     guess(word)
 
 
